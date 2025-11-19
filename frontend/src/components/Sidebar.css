@@ -1,0 +1,140 @@
+/* src/components/Sidebar.css */
+
+:root {
+  --sidebar-width: 220px; /* adjust width here */
+  --sidebar-bg-1: #1b1736;
+  --sidebar-bg-2: #0f0c23;
+  --accent: #7a5bff;
+  --item-bg: rgba(255,255,255,0.06);
+}
+
+/* =========================
+   SIDEBAR CONTAINER
+========================= */
+.sidebar {
+  width: var(--sidebar-width);
+  background: linear-gradient(180deg, var(--sidebar-bg-1), var(--sidebar-bg-2));
+  height: 100vh;
+  padding: 28px 20px;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow-y: auto;
+  color: white;
+  box-shadow: 2px 0 20px rgba(0,0,0,0.45);
+  z-index: 200;
+  align-items: stretch;
+}
+
+/* =========================
+   LOGO
+========================= */
+.logo {
+  font-size: 28px;
+  font-weight: 800;
+  margin-bottom: 22px;
+  color: #fff;
+}
+
+/* =========================
+   MINI PROFILE (FIXED)
+   — no box
+   — text always visible
+========================= */
+.mini-profile {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 22px;
+  padding-left: 2px; 
+}
+
+.mini-name {
+  font-size: 17px;
+  font-weight: 800;
+  color: #ffffff !important;
+  opacity: 1 !important;
+  margin: 0;
+}
+
+.mini-roll {
+  font-size: 13px;
+  color: rgba(255,255,255,0.75) !important;
+  margin: 0;
+}
+
+/* =========================
+   NAV LINKS
+========================= */
+.sidebar-links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  border-radius: 14px;
+  background: var(--item-bg);
+  color: #fff;
+  text-decoration: none;
+  width: 100%;
+  box-sizing: border-box;
+  transition: background 150ms ease, transform 120ms ease;
+}
+
+.sidebar-item:hover {
+  background: rgba(255,255,255,0.12);
+  transform: translateY(-1px);
+}
+
+.sidebar-item.active {
+  background: var(--accent);
+}
+
+.sidebar-item .icon {
+  min-width: 26px;
+  text-align: center;
+}
+
+.sidebar-item .label {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* =========================
+   FOOTER TAG
+========================= */
+.footer-tag {
+  margin-top: auto;
+  font-size: 12px;
+  opacity: 0.75;
+  padding-top: 12px;
+}
+
+/* FORCE VISIBILITY OF NAME */
+.mini-profile {
+  padding: 10px 5px !important;
+  background: rgba(0, 0, 0, 0.15);  /* subtle dark layer for visibility */
+  border-radius: 8px;
+}
+
+.mini-name {
+  color: #ffffff !important;
+  font-weight: 800;
+  opacity: 1 !important;
+  margin-bottom: 2px;
+}
+
+.mini-roll {
+  opacity: 0.85;
+  color: #e5e5e5 !important;
+}

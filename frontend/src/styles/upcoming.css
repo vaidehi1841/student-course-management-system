@@ -1,0 +1,159 @@
+/* Purple View All Button */
+.btn-view-all {
+  background: linear-gradient(90deg, #6E8BFF, #7a5bff);
+  color: white;
+  padding: 10px 16px;
+  border-radius: 10px;
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(122,91,255,0.12);
+  transition: transform 120ms ease, box-shadow 120ms ease;
+  font-size: 15px;
+}
+
+.btn-view-all:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 30px rgba(122,91,255,0.18);
+}
+
+/* Admin-only Add Button */
+.btn-add-course {
+  background: linear-gradient(90deg, #ff8a5b, #ff5b5b);
+  color: white;
+  padding: 10px 16px;
+  border-radius: 10px;
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(255,91,91,0.12);
+  transition: transform 120ms ease, box-shadow 120ms ease;
+  font-size: 15px;
+}
+
+.btn-add-course:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 30px rgba(255,91,91,0.18);
+}
+
+/* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.55);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3000;
+}
+
+/* Modal Card */
+.modal-card {
+  background: #161622;
+  width: 420px;
+  padding: 25px;
+  border-radius: 14px;
+  box-shadow: 0 10px 26px rgba(0,0,0,0.4);
+  color: white;
+}
+
+.modal-card h2 {
+  margin-bottom: 14px;
+}
+
+/* Modal Form */
+.modal-form input,
+.modal-form textarea {
+  width: 100%;
+  background: #2a2a3d;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  color: white;
+  margin-bottom: 12px;
+}
+
+.modal-form textarea {
+  height: 80px;
+  resize: none;
+}
+
+.btn-modal-submit {
+  width: 100%;
+  background: #6E8BFF;
+  border: none;
+  padding: 12px;
+  color: white;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btn-modal-cancel {
+  width: 100%;
+  background: #444;
+  border: none;
+  padding: 10px;
+  color: white;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Grid layout ONLY for the full upcoming page */
+.up-all-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)) !important;
+  gap: 22px;
+  justify-items: center;   /* center cards horizontally */
+  align-items: start;
+  margin-top: 20px;
+}
+/* ONLY for the full upcoming page */
+.up-all-grid .upflip-card {
+  width: 250px !important;
+  height: 260px !important;
+}
+
+.up-all-grid .upflip-front,
+.up-all-grid .upflip-back {
+  padding: 12px !important;
+  justify-content: flex-start !important;
+  text-align: center !important;
+}
+
+.up-all-grid .up-img {
+  height: 120px !important;
+  margin-bottom: 10px !important;
+  padding: 8px !important;
+}
+
+/* Title + category readability */
+.up-all-grid .upflip-front h4 {
+  font-size: 16px;
+  margin-bottom: 6px;
+  white-space: normal;
+}
+
+.up-all-grid .upflip-front .muted {
+  font-size: 13px;
+  opacity: 0.8;
+}
+
+.up-all-grid .upflip-back p {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+/* Grid layout */
+.up-all-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)) !important;
+  gap: 25px;
+  margin-top: 20px;
+  justify-items: center;
+}

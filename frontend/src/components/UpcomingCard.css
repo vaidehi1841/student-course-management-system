@@ -1,0 +1,62 @@
+.upflip-card {
+  perspective: 1200px;
+  width: 100%;
+  height: 200px;
+}
+
+.upflip-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  transition: transform 0.7s ease;
+  transform-style: preserve-3d;
+  position: relative;
+  cursor: pointer;
+}
+
+.upflip-card:hover .upflip-inner {
+  transform: rotateY(180deg);
+}
+
+.upflip-front,
+.upflip-back {
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  backface-visibility: hidden;
+  overflow: hidden;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.upflip-front {
+  background: rgba(106, 79, 247, 0.12);
+  text-align: center;
+  padding: 18px 14px; /* TOP padding increased */
+}
+
+.up-img {
+  width: 100%;
+  height: 90px;
+  object-fit: contain;   /* changed from cover → contain */
+  border-radius: 8px;
+  margin-bottom: 12px;
+
+  /* NEW: Add spacing so image doesn't touch edges */
+  padding: 8px;
+  background: rgba(255,255,255,0.05); /* looks neat behind icons */
+  border-radius: 10px;
+}
+.upflip-back {
+  background: rgba(255,255,255,0.12);
+  transform: rotateY(180deg);
+  color: #e2e5ff;
+}
+
+.up-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 15px;
+}

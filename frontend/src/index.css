@@ -1,0 +1,11 @@
+body {
+  margin: 0;
+  background: #0d0f16;
+  color: white;
+  font-family: Inter, system-ui, sans-serif;
+}
+
+.card {
+  background: #111217;
+  color: #fff;
+}

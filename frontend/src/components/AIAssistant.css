@@ -1,0 +1,88 @@
+/* Floating Button */
+.ai-button {
+  width: 60px;
+  height: 60px;
+  background: #6E8BFF;
+  color: white;
+  border-radius: 50%;
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 28px;
+  cursor: pointer;
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+  transition: transform 0.2s ease-in-out;
+}
+
+.ai-button:hover {
+  transform: scale(1.1);
+}
+
+
+/* Chat Window */
+.ai-window {
+  width: 330px;
+  height: 420px;
+  background: #1f1f2e;
+  position: fixed;
+  bottom: 90px;
+  right: 25px;
+  border-radius: 12px;
+  box-shadow: 0 0 25px rgba(0,0,0,0.4);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Header */
+.ai-header {
+  padding: 12px;
+  background: #2a2a3d;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+}
+
+.ai-header button {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+/* Body */
+.ai-body {
+  flex: 1;
+  padding: 10px;
+  color: white;
+  overflow-y: auto;
+}
+
+/* Input area */
+.ai-input {
+  padding: 10px;
+  display: flex;
+  background: #2a2a3d;
+  gap: 5px;
+}
+
+.ai-input input {
+  flex: 1;
+  padding: 8px;
+  border-radius: 6px;
+  border: none;
+}
+
+.ai-input button {
+  padding: 8px 12px;
+  background: #6E8BFF;
+  border: none;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
