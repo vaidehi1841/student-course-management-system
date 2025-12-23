@@ -1,9 +1,6 @@
-const { createClient } = require("redis");
+// Redis is DISABLED for Render deployment
+// (Safe to re-enable later)
 
-const redisClient = createClient();
-
-redisClient.on("error", (err) => {
-  console.error("Redis Client Error", err);
-});
+let redisClient = null;
 
 module.exports = redisClient;
