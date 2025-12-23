@@ -2,7 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const connectDB = require("./config/db");
-const redisClient = require("./config/redis");
+//const redisClient = require("./config/redis");
 const { initializeWebSocket } = require("./utils/websocket");
 const http = require("http");
 const path = require("path");
@@ -37,7 +37,7 @@ app.get(/.*/, (req, res) => {
 
 // Connect DB & Redis
 connectDB();
-redisClient.connect();
+//redisClient.connect();
 
 // Server
 const server = http.createServer(app);
