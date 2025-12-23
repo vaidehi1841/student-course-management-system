@@ -8,13 +8,8 @@ export default function Sidebar() {
 
   useEffect(() => {
     API.get("/student/details")
-      .then((res) => {
-        console.log("STUDENT DETAILS:", res.data);
-        setUser(res.data);
-      })
-      .catch((err) => {
-        console.error("Failed to load student details", err?.response || err);
-      });
+      .then((res) => setUser(res.data))
+      .catch(() => {});
   }, []);
 
   return (
@@ -23,8 +18,10 @@ export default function Sidebar() {
 
       {user?.name && (
         <div className="mini-profile">
-          <div className="mini-name">{user.name || "Student"}</div>
-          <div className="mini-roll">Roll No: {user.rollNumber || "-"}</div>
+          <div className="mini-name">{user.name}</div>
+          <div className="mini-roll">
+            Roll No: {user.rollNumber || "-"}
+          </div>
         </div>
       )}
 
@@ -34,29 +31,35 @@ export default function Sidebar() {
           <span className="label">Dashboard</span>
         </NavLink>
 
-        <NavLink to="/enrolled" className="sidebar-item">
-          <span className="icon">📘</span>
-          <span className="label">Enrolled</span>
-        </NavLink>
+        {/* ✅ STUDENT ONLY */}
+        {user?.role !== "admin" && (
+          <NavLink to="/enrolled" className="sidebar-item">
+            <span className="icon">📘</span>
+            <span className="label">Enrolled</span>
+          </NavLink>
+        )}
 
         <NavLink to="/upcoming" className="sidebar-item">
           <span className="icon">📅</span>
           <span className="label">Upcoming</span>
         </NavLink>
 
-        <NavLink to="/attendance" className="sidebar-item">
-          <span className="icon">📈</span>
-          <span className="label">Attendance</span>
+        {/* ✅ ADMIN ONLY */}
+        {user?.role === "admin" && (
+          <NavLink to="/admin-overview" className="sidebar-item">
+            <span className="icon">🧑‍💼</span>
+            <span className="label">Admin Overview</span>
+          </NavLink>
+        )}
+
+        <NavLink to="/notes" className="sidebar-item">
+          <span className="icon">📄</span>
+          <span className="label">Notes</span>
         </NavLink>
 
         <NavLink to="/settings" className="sidebar-item">
           <span className="icon">⚙️</span>
           <span className="label">Settings</span>
-        </NavLink>
-
-        <NavLink to="#" className="sidebar-item">
-          <span className="icon">💬</span>
-          <span className="label">Chat AI</span>
         </NavLink>
       </nav>
 

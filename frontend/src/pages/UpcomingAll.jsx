@@ -12,12 +12,29 @@ export default function UpcomingAll() {
 
   useEffect(() => {
     let mounted = true;
+
     const load = async () => {
       try {
-        const res = await API.get("/student/upcoming");
+        // Fetch upcoming + enrolled together
+        const [upRes, enRes] = await Promise.all([
+          API.get("/student/upcoming"),
+          API.get("/student/enrolled"),
+        ]);
+
         if (!mounted) return;
-        // backend returns array of courses
-        setCourses(res.data || []);
+
+        const upcomingCourses = upRes.data || [];
+        const enrolledCourses = enRes.data?.courses || [];
+
+        // extract enrolled course IDs
+        const enrolledIds = enrolledCourses.map(c => c._id);
+
+        // remove already enrolled courses
+        const filteredUpcoming = upcomingCourses.filter(
+          c => !enrolledIds.includes(c._id)
+        );
+
+        setCourses(filteredUpcoming);
       } catch (err) {
         console.error("Failed to load upcoming courses", err?.response || err);
         setCourses([]);
@@ -25,6 +42,7 @@ export default function UpcomingAll() {
         if (mounted) setLoading(false);
       }
     };
+
     load();
     return () => (mounted = false);
   }, []);
@@ -39,6 +57,7 @@ export default function UpcomingAll() {
         <div className="container">
           <section className="card">
             <h3>All Upcoming Courses</h3>
+
             {loading ? (
               <p style={{ opacity: 0.8 }}>Loading upcoming courses…</p>
             ) : courses.length === 0 ? (

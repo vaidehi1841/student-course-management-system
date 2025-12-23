@@ -60,3 +60,19 @@
   grid-template-columns: 1fr;
   gap: 15px;
 }
+.enroll-btn {
+  margin-top: 12px;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  background: #7a5bff;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.enroll-btn:hover {
+  transform: translateY(-2px);
+  opacity: 0.95;
+}

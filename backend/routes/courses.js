@@ -5,7 +5,9 @@ const roles = require("../middleware/roles");
 
 const router = express.Router();
 
-// CREATE COURSE (Admin Only)
+/* =========================
+   CREATE COURSE (Admin Only)
+========================= */
 router.post("/", auth, roles("admin"), async (req, res) => {
   try {
     const { title, description, image, videoUrl, category, isUpcoming } = req.body;
@@ -16,7 +18,7 @@ router.post("/", auth, roles("admin"), async (req, res) => {
       image,
       videoUrl,
       category,
-      isUpcoming
+      isUpcoming,
     });
 
     res.json({ msg: "Course created", course });
@@ -26,7 +28,9 @@ router.post("/", auth, roles("admin"), async (req, res) => {
   }
 });
 
-// GET ALL COURSES
+/* =========================
+   GET ALL COURSES
+========================= */
 router.get("/", async (req, res) => {
   try {
     const courses = await Course.find().sort({ createdAt: -1 });
@@ -37,7 +41,9 @@ router.get("/", async (req, res) => {
   }
 });
 
-// GET UPCOMING COURSES
+/* =========================
+   GET UPCOMING COURSES
+========================= */
 router.get("/upcoming", async (req, res) => {
   try {
     const upcoming = await Course.find({ isUpcoming: true });
@@ -48,7 +54,9 @@ router.get("/upcoming", async (req, res) => {
   }
 });
 
-// GET COURSE BY ID
+/* =========================
+   GET COURSE BY ID
+========================= */
 router.get("/:id", async (req, res) => {
   try {
     const course = await Course.findById(req.params.id);
@@ -58,6 +66,53 @@ router.get("/:id", async (req, res) => {
     res.json(course);
   } catch (err) {
     console.error(err);
+    res.status(500).json({ msg: "Server error" });
+  }
+});
+
+/* =========================
+   UPDATE COURSE (Admin Only)
+========================= */
+router.put("/:id", auth, roles("admin"), async (req, res) => {
+  try {
+    const updates = req.body;
+
+    const course = await Course.findByIdAndUpdate(
+      req.params.id,
+      { $set: updates },
+      { new: true }
+    );
+
+    if (!course) {
+      return res.status(404).json({ msg: "Course not found" });
+    }
+
+    res.json({
+      msg: "Course updated successfully",
+      course,
+    });
+  } catch (err) {
+    console.error("Update course error:", err);
+    res.status(500).json({ msg: "Server error" });
+  }
+});
+
+/* =========================
+   DELETE COURSE (Admin Only)
+========================= */
+router.delete("/:id", auth, roles("admin"), async (req, res) => {
+  try {
+    const course = await Course.findById(req.params.id);
+
+    if (!course) {
+      return res.status(404).json({ msg: "Course not found" });
+    }
+
+    await course.deleteOne();
+
+    res.json({ msg: "Course deleted successfully" });
+  } catch (err) {
+    console.error("Delete course error:", err);
     res.status(500).json({ msg: "Server error" });
   }
 });
