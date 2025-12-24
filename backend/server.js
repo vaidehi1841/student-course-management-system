@@ -12,22 +12,16 @@ const adminRoutes = require("./routes/adminRoutes");
 
 const app = express();
 
-/* ======================
-   MIDDLEWARE
-====================== */
+/* ===== Middleware ===== */
 app.use(cors());
 app.use(express.json());
 
-/* ======================
-   HEALTH CHECK (IMPORTANT)
-====================== */
+/* ===== Health Check ===== */
 app.get("/health", (req, res) => {
   res.status(200).json({ status: "OK", message: "Backend is running" });
 });
 
-/* ======================
-   API ROUTES
-====================== */
+/* ===== API Routes ===== */
 app.use("/api/auth", require("./routes/auth"));
 app.use("/api/courses", require("./routes/courses"));
 app.use("/api/enroll", require("./routes/enroll"));
@@ -36,16 +30,12 @@ app.use("/api/notes", noteRoutes);
 app.use("/api/feedback", feedbackRoutes);
 app.use("/api/admin", adminRoutes);
 
-/* ======================
-   API FALLBACK
-====================== */
-app.use("/api/*", (req, res) => {
+/* ===== API Fallback (Express 5 safe) ===== */
+app.use("/api", (req, res) => {
   res.status(404).json({ msg: "API route not found" });
 });
 
-/* ======================
-   START SERVER
-====================== */
+/* ===== Start Server ===== */
 connectDB();
 
 const server = http.createServer(app);
